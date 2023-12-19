@@ -1,8 +1,7 @@
-import express from 'express';
-
-const app = express();
-
-app.use(express.json());
-
-
-app.listen(7000, () => console.log('Server up and running...'));
+import app from './app.js';
+import { connectToMongoDB } from './db/connection.js';
+connectToMongoDB()
+    .then(() => {
+    app.listen(7000, () => console.log('Server is up and connected to Database...'));
+}).catch(err => console.log(err));
+//# sourceMappingURL=index.js.map

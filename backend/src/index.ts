@@ -1,6 +1,9 @@
-import express from 'express';
-import { config } from 'dotenv'; 
+import { connect } from 'http2'
+import app from './app.js'
+import { connectToMongoDB } from './db/connection.js'
 
-const app = express();
+connectToMongoDB()
+.then(() => {
+    app.listen(7000, () => console.log('Server is up and connected to Database...'))
 
-app.listen(7000, () => console.log('Server is up and running...'))
+}).catch(err => console.log(err))
