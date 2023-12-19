@@ -5,4 +5,4 @@ const app = express();
 app.use(express.json());
 
 
-app.listen(8000, () => console.log('Server up and running...'));
+app.listen(7000, () => console.log('Server up and running...'));

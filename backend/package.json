@@ -11,7 +11,7 @@
     
   },
   "keywords": [],
-  "author": "",
+  "author": "Conrad PMB",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
