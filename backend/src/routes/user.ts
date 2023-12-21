@@ -5,4 +5,4 @@ const userRoute = Router()
 
 userRoute.get('/', getAllUsers)
 
-export default userRoute 
+export default userRoute
