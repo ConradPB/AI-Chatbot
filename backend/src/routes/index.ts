@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import userRoute from './user.js'
 import chatRoute from './chats.js'
+import userRoute from './user.js'
 
 const appRouter = Router()
 
