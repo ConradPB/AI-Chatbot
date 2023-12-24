@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from 'express'
 import user from '../models/user.js'
 import { compare, hash } from 'bcrypt'
+import { createToken } from '../utils/token.js';
 
 export const getAllUsers = async (
     req: Request,
@@ -55,9 +56,11 @@ export const userLogin = async (
         const isPasswordCorrect = await compare(password, User.password);
         if (!isPasswordCorrect) {
             return res.status(403).send('Incorrect Password')
-
         }
         
+        const token = createToken(User._id.toString(), User.email, '7d')
+
+
         return res.status(200).json({ message:'OK', id: User._id.toString() });
     } catch (error) {
         console.log(error);
