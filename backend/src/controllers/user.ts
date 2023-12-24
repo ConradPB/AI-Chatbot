@@ -1,5 +1,5 @@
 
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express'
 import user from '../models/user.js'
 import { hash } from 'bcrypt'
 
