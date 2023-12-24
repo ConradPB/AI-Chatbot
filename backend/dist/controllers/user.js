@@ -16,7 +16,7 @@ export const userSignup = async (req, res, next) => {
         // find if there was an existing 
         const existingUser = await user.findOne({ email });
         if (existingUser)
-            return res.status(401).json('User already registered');
+            return res.status(401).send('User already registered');
         const hashedPassword = await hash(password, 10);
         const User = new user({ name, email, password: hashedPassword });
         await User.save();
@@ -36,7 +36,7 @@ export const userLogin = async (req, res, next) => {
         }
         const isPasswordCorrect = await compare(password, User.password);
         if (!isPasswordCorrect) {
-            return res.status(403).send('Incorrect password');
+            return res.status(403).send('Incorrect Password');
         }
         return res.status(200).json({ message: 'OK', id: User._id.toString() });
     }

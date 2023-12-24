@@ -28,7 +28,7 @@ export const userSignup = async (
         // find if there was an existing 
 
         const existingUser = await user.findOne({ email })
-        if (existingUser) return res.status(401).json('User already registered');
+        if (existingUser) return res.status(401).send('User already registered');
         const hashedPassword = await hash(password, 10)
         const User = new user({ name, email, password: hashedPassword });
         await User.save()
@@ -54,7 +54,7 @@ export const userLogin = async (
 
         const isPasswordCorrect = await compare(password, User.password);
         if (!isPasswordCorrect) {
-            return res.status(403).send('Incorrect password')
+            return res.status(403).send('Incorrect Password')
 
         }
         
