@@ -29,7 +29,7 @@ export const userSignup = async (
         const User = new user({ name, email, password: hashedPassword });
         await User.save()
 
-        return res.status(200).json({ message:'OK', id: User._id.toString() });
+        return res.status(201).json({ message:'OK', id: User._id.toString() });
     } catch (error) {
         console.log(error);
         return res.status(200).json({ message:'ERROR', cause: error.message })
