@@ -57,8 +57,22 @@ export const userLogin = async (
         if (!isPasswordCorrect) {
             return res.status(403).send('Incorrect Password')
         }
+
+        res.clearCookie('auth_token')
         
         const token = createToken(User._id.toString(), User.email, '7d')
+
+        //create validation for cookie expiry
+        const expires = new Date()
+        expires.setDate(expires.getDate() + 7)
+
+        res.cookie('auth_token', token, { 
+            path: '/', 
+            domain: 'localhost', 
+            expires,
+            signed: true, 
+            httpOnly: true,
+        })
 
 
         return res.status(200).json({ message:'OK', id: User._id.toString() });
