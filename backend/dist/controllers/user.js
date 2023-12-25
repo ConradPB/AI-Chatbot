@@ -1,5 +1,7 @@
 import user from '../models/user.js';
 import { compare, hash } from 'bcrypt';
+import { createToken } from '../utils/token.js';
+import { COOKIE_NAME } from '../utils/constants.js';
 export const getAllUsers = async (req, res, next) => {
     try {
         const users = await user.find();
@@ -20,6 +22,24 @@ export const userSignup = async (req, res, next) => {
         const hashedPassword = await hash(password, 10);
         const User = new user({ name, email, password: hashedPassword });
         await User.save();
+        // Create token and store cookie
+        res.clearCookie(COOKIE_NAME, {
+            path: '/',
+            httpOnly: true,
+            domain: 'localhost',
+            signed: true,
+        });
+        const token = createToken(User._id.toString(), User.email, '7d');
+        //create validation for cookie expiry
+        const expires = new Date();
+        expires.setDate(expires.getDate() + 7);
+        res.cookie(COOKIE_NAME, token, {
+            path: '/',
+            domain: 'localhost',
+            expires,
+            signed: true,
+            httpOnly: true,
+        });
         return res.status(201).json({ message: 'OK', id: User._id.toString() });
     }
     catch (error) {
@@ -38,6 +58,23 @@ export const userLogin = async (req, res, next) => {
         if (!isPasswordCorrect) {
             return res.status(403).send('Incorrect Password');
         }
+        res.clearCookie(COOKIE_NAME, {
+            path: '/',
+            httpOnly: true,
+            domain: 'localhost',
+            signed: true,
+        });
+        const token = createToken(User._id.toString(), User.email, '7d');
+        //create validation for cookie expiry
+        const expires = new Date();
+        expires.setDate(expires.getDate() + 7);
+        res.cookie(COOKIE_NAME, token, {
+            path: '/',
+            domain: 'localhost',
+            expires,
+            signed: true,
+            httpOnly: true,
+        });
         return res.status(200).json({ message: 'OK', id: User._id.toString() });
     }
     catch (error) {
