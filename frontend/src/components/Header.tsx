@@ -18,16 +18,18 @@ const Header = () => {
             <NavigationLink 
             bg='#00ffc' 
             to='/chat' 
-            text='Go to Chat' 
-            textColor='black'/>
+            text='Go to chat' 
+            textColor='black'
+            />
             <NavigationLink 
             bg='#51538f' 
             to='/' 
             text='Logout' 
-            textColor='white'/>
+            textColor='white'
             onClick={auth.logout}
+            />
           </>
-          ) : (
+          ):(
           <>
           <NavigationLink 
           bg='#00ffc' 
@@ -38,8 +40,9 @@ const Header = () => {
           <NavigationLink 
           bg='#51538f' 
           to='/signup' 
-          text='Please Sign Up' 
-          textColor='white'/>
+          text='Signup' 
+          textColor='white'
+          />
             </>
             )}
         </div>
