@@ -1,5 +1,5 @@
-import { Typography } from '@mui/material'
 import React from 'react'
+import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const Logo = () => {
@@ -8,18 +8,17 @@ const Logo = () => {
         display: 'flex', 
         marginRight: 'auto', 
         alignItems: 'center', 
-        gap: '8px',
+        gap: '15px',
      }}>
-        <Link to={ '/' }>
+        <Link to={'/'}>
             <img 
-            src='openai.png' 
-            alt='openai' 
-            width={ '30px' } 
-            height={ '30px' } 
+            src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI=' 
+            alt='ai' 
+            width={'30px'} 
+            height={'30px'} 
             className='Image-inverted' 
             />
-           
-        </Link>{ ' ' }
+        </Link>
         <Typography sx={{ 
               display : { md:'block', sm: 'none', xs: 'none',  }, 
               mr: 'auto', 
