@@ -5,8 +5,10 @@ import Login from "./pages/Login"
 import Chat from "./pages/Chat"
 import Signup from "./pages/Signup"
 import NotFound from "./pages/NotFound"
+import { useAuth } from "./context/Authcontext"
 
 function App() {
+  console.log(useAuth()?.isLoggedIn)
 
   return (
     <main>
@@ -16,7 +18,7 @@ function App() {
         <Route path='/login' element={ <Login /> } />
         <Route path='/chat' element={ <Chat /> } />
         <Route path='/signup' element={ <Signup /> } />
-        <Route path='/notfound' element={ <NotFound /> } />
+        <Route path='*' element={ <NotFound /> } />
       </Routes>
      
 
