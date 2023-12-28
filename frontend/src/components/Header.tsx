@@ -4,8 +4,8 @@ import React from 'react'
 const Header = () => {
   return (
     // App bar is a basic nav bar with predefined styles
-    <AppBar sx={{}}>
-      <Toolbar>
+    <AppBar sx={{ position: 'static', bgcolor: 'transparent',  }}>
+      <Toolbar sx={{ display: 'flex' }}>
 
       </Toolbar>
     </AppBar>
