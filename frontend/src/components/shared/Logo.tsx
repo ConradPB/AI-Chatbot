@@ -18,7 +18,9 @@ const Logo = () => {
             height={ '30px' } 
             className='Image-inverted' 
             />
-            <Typography sx={{ 
+           
+        </Link>{ ' ' }
+        <Typography sx={{ 
               display : { md:'block', sm: 'none', xs: 'none',  }, 
               mr: 'auto', 
               fontWeight: '800', 
@@ -26,7 +28,6 @@ const Logo = () => {
             }}>
               <span style={{ fontSize: '20px' }}>MERN</span>-AI
             </Typography>
-        </Link>
     </div>
   )
 }
