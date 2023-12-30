@@ -23,3 +23,9 @@ html,body {
   text-decoration: none;
   letter-spacing: 1px;
 }
+
+img {
+  background-origin: 0;
+  opacity:0.8 ;
+
+}
