@@ -28,3 +28,9 @@ img {
   opacity:0.9;
   border-radius:190px;
 }
+
+.MuiOutlinedInput-input-root.Mui-focused,
+.MuiOutlinedInput-notchedOutline { 
+  border-color: white !important;
+
+ }
