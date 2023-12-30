@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material'
+import CustomizedInput from '../components/shared/customizedInput'
 
 
 
@@ -36,6 +37,8 @@ const Login = () => {
               fontWeight={600}>
                 Login
               </Typography>
+              <CustomizedInput type='email' name='email' label='Email'/>
+              <CustomizedInput type='password' name='password' label='Password'/>
             </Box>
             
             </form>
