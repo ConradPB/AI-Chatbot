@@ -5,6 +5,13 @@ import './index.css'
 import { ThemeProvider, createTheme } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/Authcontext.tsx'
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:8000/api/v1'
+
+//with credentials helps you to exchange cookies with the BE
+axios.defaults.withCredentials = true
+
+
 const theme = createTheme({ 
   typography: { 
     fontFamily: 'roboto slab, serif', 
