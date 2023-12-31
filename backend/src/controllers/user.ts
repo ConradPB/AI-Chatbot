@@ -67,7 +67,7 @@ export const userSignup = async (
 
 export const userLogin = async (
     req: Request, 
-    res: Response, 
+    res: Response,
     next: NextFunction
     ) => {
     try {
