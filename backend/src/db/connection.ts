@@ -9,7 +9,6 @@ async function connectToMongoDB() {
     }
 
 }
-
 async function disconnectFromMongodb() {
     try {
         await disconnect()
