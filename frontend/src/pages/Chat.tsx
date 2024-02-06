@@ -14,7 +14,7 @@ const Chat = () => {
       mt: 3, 
       gap: 3  }}
       >
-        <Box sx={{display: { md: 'flex', xs: 'none', sm: 'none' } }}>
+        <Box sx={{ display: { md: 'flex', xs: 'none', sm: 'none', flex: 0.2, flexDirection: 'column'  } }}>
           <Box sx={{
             display: 'flex', 
             width: '100%', 
@@ -60,7 +60,19 @@ const Chat = () => {
                     >Clear Conversation</Button>
             </Box>
         </Box>
-        <Box></Box>
+        <Box sx={{ display: 'flex', flex: { md: 0.8, xs: 1, sm: 1 }, width: '100%' }}>
+          <Typography sx={{ 
+             
+            fontSize: '40px', 
+            color: 'white', 
+            mb: 2,
+            mx: 'auto', 
+            }}
+            >
+              Model - GPT 3.5 Turbo
+          </Typography>
+          <Box sx={{  }}></Box>
+        </Box>
       </Box>
   )
 }
