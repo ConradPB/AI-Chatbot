@@ -82,4 +82,22 @@ export const userLogin = async (req, res, next) => {
         return res.status(200).json({ message: 'ERROR', cause: error.message });
     }
 };
+export const verifyUser = async (req, res, next) => {
+    try {
+        const User = await user.findById(res.locals.jwtData.id);
+        if (!User) {
+            return res.status(401).send('User not registered or token malfuncation');
+        }
+        if (User._id.toString() !== res.locals.jwtData.id) {
+            res.status(401).send('Permissions didnt match');
+        }
+        return res
+            .status(200)
+            .json({ message: 'OK', name: User.name, email: User.email });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(200).json({ message: 'ERROR', cause: error.message });
+    }
+};
 //# sourceMappingURL=user.js.map
