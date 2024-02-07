@@ -1,8 +1,7 @@
-import { Avatar, Box, Button, Typography } from '@mui/material'
 import React from 'react'
+import { Avatar, Box, Button, Typography } from '@mui/material'
 import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
-
 const Chat = () => {
   const auth = useAuth()
   return (
@@ -60,7 +59,7 @@ const Chat = () => {
                     >Clear Conversation</Button>
             </Box>
         </Box>
-        <Box sx={{ display: 'flex', flex: { md: 0.8, xs: 1, sm: 1 }, width: '100%' }}>
+        <Box sx={{ display: 'flex', flex: { md: 0.8, xs: 1, sm: 1 }, flexDirection: 'column', px: 3 }}>
           <Typography sx={{ 
              
             fontSize: '40px', 
@@ -71,7 +70,18 @@ const Chat = () => {
             >
               Model - GPT 3.5 Turbo
           </Typography>
-          <Box sx={{  }}></Box>
+          <Box sx={{ 
+            width: '100%', 
+            height: '60vh', 
+            borderRadius: 3, 
+            mx: 'auto', 
+            display: 'flex', 
+            flexDirection:'column', 
+            overflow:'scroll', 
+            overflowX:'hidden',
+            overflowY: 'auto',
+            scrollBehavior:'smooth'
+             }}></Box>
         </Box>
       </Box>
   )
