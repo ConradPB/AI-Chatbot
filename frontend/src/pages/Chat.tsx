@@ -1,7 +1,28 @@
-import React from 'react'
 import { Avatar, Box, Button, Typography } from '@mui/material'
 import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
+const chatMessages = [
+  {
+    "role": "User", "content": "Hello, AI assitant! Can you help me with today's weather?"
+  },
+  {
+    "role": "AI", "content": "Of course! Please provide me with your current location."
+  },
+  {
+    "role": "User", "content": "I'm in Mombasa."
+  },
+  {
+    "role": "AI", "content": "It looks like it will be sunny in Mombasa today, with a high of 32°C and a low of 25°C."
+  },
+  {
+    "role": "User", "content": "Great, thank you! How about tomorrow?"
+  },
+  {
+    "role": "AI", "content": "Tomorrow, you can expect partly cloudy skies with a high of 31°C and a low of 24°C."
+  },
+]
+
+
 const Chat = () => {
   const auth = useAuth()
   return (
@@ -81,7 +102,9 @@ const Chat = () => {
             overflowX:'hidden',
             overflowY: 'auto',
             scrollBehavior:'smooth'
-             }}></Box>
+             }}>
+              { chatMessages.map((chat) => <div>{ chat.content }</div> ) }
+             </Box>
         </Box>
       </Box>
   )
