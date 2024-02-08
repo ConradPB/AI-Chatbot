@@ -4,20 +4,23 @@ import { useAuth } from '../../context/Authcontext'
 
 const ChatItem = ({
     content, 
-    role}:{
-        content:string,
-        role:'user'|'assistant' }) => {
-            const auth = useAuth()
+    role,}:{
+        content: string;
+        role:'user' | 'assistant';
+    }) => {
+        const auth = useAuth()
   return (
-    role === 'assistant' ? (
+role === 'assistant' ? (
         <Box sx={{ 
             display: 'flex', 
             p: 2, 
             bgcolor: '#004d5612', 
             my: 2, 
-            gap: 2 }}>
+            gap: 2 }}> 
             <Avatar sx={{ ml: '0' }}>
-                <img src='ai.jpeg'alt='ai' width={'30px'} />
+                <img src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI='
+                alt='ai' 
+                width={'30px'} />
             </Avatar>
             <Box><Typography fontSize={'20px'}>
                 {content}

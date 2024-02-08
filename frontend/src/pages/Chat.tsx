@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Typography } from '@mui/material'
 import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
+import ChatItem from '../components/chat/ChatItem'
 const chatMessages = [
   {
     "role": "User", "content": "Hello, AI assitant! Can you help me with today's weather?"
@@ -103,7 +104,12 @@ const Chat = () => {
             overflowY: 'auto',
             scrollBehavior:'smooth'
              }}>
-              { chatMessages.map((chat) => <div>{ chat.content }</div> ) }
+              { chatMessages.map((chat, index) => (
+              <ChatItem 
+              content={chat.content} 
+              role={ chat.role } 
+              key={index} />
+              )) }
              </Box>
         </Box>
       </Box>
