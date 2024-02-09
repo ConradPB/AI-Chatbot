@@ -3,10 +3,11 @@ import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
+import { useRef } from 'react'
 const chatMessages = [
   {
     role: "User", 
-    content: "Hello, AI assitant! Can you help me with today's weather?"
+    content: "Hello, AI assistant! Can you help me with today's weather?"
   },
   {
     role: "AI", 
@@ -14,7 +15,8 @@ const chatMessages = [
     "Of course! Please provide me with your current location."
   },
   {
-    role: "User", content: "I'm in Mombasa."
+    role: "User", 
+    content: "I'm in Mombasa."
   },
   {
     role: "AI", 
@@ -22,7 +24,8 @@ const chatMessages = [
     "It looks like it will be sunny in Mombasa today, with a high of 32°C and a low of 25°C."
   },
   {
-    role: "User", content: "Great, thank you! How about tomorrow?"
+    role: "User", 
+    content: "Great, thank you! How about tomorrow?"
   },
   {
     role: "AI", 
@@ -32,7 +35,11 @@ const chatMessages = [
 
 
 const Chat = () => {
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const auth = useAuth()
+  const handleSubmit = async () => {
+    console.log(inputRef.current?.value)
+  }
   return (
     <Box sx={{ 
       display: 'flex', 
@@ -89,7 +96,11 @@ const Chat = () => {
                     >Clear Conversation</Button>
             </Box>
         </Box>
-        <Box sx={{ display: 'flex', flex: { md: 0.8, xs: 1, sm: 1 }, flexDirection: 'column', px: 3 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flex: { md: 0.8, xs: 1, sm: 1 }, 
+          flexDirection: 'column', 
+          px: 3 }}>
           <Typography sx={{ 
              
             fontSize: '40px', 
@@ -113,8 +124,10 @@ const Chat = () => {
             scrollBehavior:'smooth'
              }}>
               { chatMessages.map((chat, index) => (
-              <ChatItem 
+              <ChatItem
               content={chat.content} 
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-expect-error
               role={chat.role} 
               key={index}/>
               )) }
@@ -128,21 +141,22 @@ const Chat = () => {
               margin: 'auto'}}>
                 {' '}
                  <input 
-             type='text' 
-             style={{
-              width: '100%',
-              backgroundColor: 'transparent',
-              padding: '10px',
-              border: 'none',
-              outline: 'none',
-              color: 'white',
-              fontSize: '20px',
-             }}/>   
-             <IconButton sx={{ ml:'auto', color:'white' }}><IoMdSend/></IconButton>
-              </div>
-                   
-        </Box>
-      </Box>
+                 ref={inputRef}
+                 type='text'
+                 style={{
+                  width: '100%',
+                  backgroundColor: 'transparent',
+                  padding: '10px',
+                  border: 'none',
+                  outline: 'none',
+                  color: 'white',
+                  fontSize: '20px',
+                  }}/>   
+                  <IconButton onClick={ handleSubmit } sx={{ ml:'auto', color:'white' }}><IoMdSend/></IconButton>
+                  </div>
+                  
+                </Box>
+            </Box>
   )
 }
 
