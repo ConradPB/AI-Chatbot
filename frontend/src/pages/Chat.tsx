@@ -4,22 +4,28 @@ import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 const chatMessages = [
   {
-    "role": "User", "content": "Hello, AI assitant! Can you help me with today's weather?"
+    role: "User", 
+    content: "Hello, AI assitant! Can you help me with today's weather?"
   },
   {
-    "role": "AI", "content": "Of course! Please provide me with your current location."
+    role: "AI", 
+    content: 
+    "Of course! Please provide me with your current location."
   },
   {
-    "role": "User", "content": "I'm in Mombasa."
+    role: "User", content: "I'm in Mombasa."
   },
   {
-    "role": "AI", "content": "It looks like it will be sunny in Mombasa today, with a high of 32°C and a low of 25°C."
+    role: "AI", 
+    content: 
+    "It looks like it will be sunny in Mombasa today, with a high of 32°C and a low of 25°C."
   },
   {
-    "role": "User", "content": "Great, thank you! How about tomorrow?"
+    role: "User", content: "Great, thank you! How about tomorrow?"
   },
   {
-    "role": "AI", "content": "Tomorrow, you can expect partly cloudy skies with a high of 31°C and a low of 24°C."
+    role: "AI", 
+    content: "Tomorrow, you can expect partly cloudy skies with a high of 31°C and a low of 24°C."
   },
 ]
 
@@ -35,7 +41,8 @@ const Chat = () => {
       mt: 3, 
       gap: 3  }}
       >
-        <Box sx={{ display: { md: 'flex', xs: 'none', sm: 'none', flex: 0.2, flexDirection: 'column'  } }}>
+        <Box sx={{ 
+          display: { md: 'flex', xs: 'none', sm: 'none', flex: 0.2, flexDirection: 'column'  } }}>
           <Box sx={{
             display: 'flex', 
             width: '100%', 
@@ -107,8 +114,8 @@ const Chat = () => {
               { chatMessages.map((chat, index) => (
               <ChatItem 
               content={chat.content} 
-              role={ chat.role } 
-              key={index} />
+              role={chat.role} 
+              key={index}/>
               )) }
              </Box>
         </Box>
