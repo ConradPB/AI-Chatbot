@@ -3,43 +3,26 @@ import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
-import { useRef } from 'react'
-const chatMessages = [
-  {
-    role: "User", 
-    content: "Hello, AI assistant! Can you help me with today's weather?"
-  },
-  {
-    role: "AI", 
-    content: 
-    "Of course! Please provide me with your current location."
-  },
-  {
-    role: "User", 
-    content: "I'm in Mombasa."
-  },
-  {
-    role: "AI", 
-    content: 
-    "It looks like it will be sunny in Mombasa today, with a high of 32°C and a low of 25°C."
-  },
-  {
-    role: "User", 
-    content: "Great, thank you! How about tomorrow?"
-  },
-  {
-    role: "AI", 
-    content: "Tomorrow, you can expect partly cloudy skies with a high of 31°C and a low of 24°C."
-  },
-]
+import { useRef, useState } from 'react'
 
 
+type Message = {
+  role: 'user' | 'AI'
+  content: string
+}
 const Chat = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const auth = useAuth()
+  const [chatMessages, setChatMessages] = useState<Message[]>([])
   const handleSubmit = async () => {
-    console.log(inputRef.current?.value)
-  }
+    const content = inputRef.current?.value as string
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = ''
+    }
+    const newMessage: Message = { role: 'user', content }
+    setChatMessages((prev) => [...prev, newMessage])
+
+}
   return (
     <Box sx={{ 
       display: 'flex', 
@@ -156,7 +139,7 @@ const Chat = () => {
                   </div>
                   
                 </Box>
-            </Box>
+        m    </Box>
   )
 }
 
