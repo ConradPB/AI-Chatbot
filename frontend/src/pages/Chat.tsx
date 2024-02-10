@@ -110,7 +110,7 @@ const Chat = () => {
               <ChatItem
               content={chat.content} 
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              //@ts-expect-error
+              
               role={chat.role} 
               key={index}/>
               )) }
@@ -139,7 +139,7 @@ const Chat = () => {
                   </div>
                   
                 </Box>
-        m    </Box>
+            </Box>
   )
 }
 
