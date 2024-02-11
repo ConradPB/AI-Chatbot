@@ -4,6 +4,7 @@ import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
 import { useRef, useState } from 'react'
+import { sendChatRequest } from '../helpers/api-communicator'
 
 
 type Message = {
@@ -21,6 +22,8 @@ const Chat = () => {
     }
     const newMessage: Message = { role: 'user', content }
     setChatMessages((prev) => [...prev, newMessage])
+    const chatData = await sendChatRequest(content)
+    setChatMessages([...chatData.chats])
 
 }
   return (
@@ -100,9 +103,9 @@ const Chat = () => {
             borderRadius: 3, 
             mx: 'auto', 
             display: 'flex', 
-            flexDirection:'column', 
-            overflow:'scroll', 
-            overflowX:'hidden',
+            flexDirection: 'column', 
+            overflow: 'scroll', 
+            overflowX: 'hidden',
             overflowY: 'auto',
             scrollBehavior:'smooth'
              }}>
@@ -121,7 +124,8 @@ const Chat = () => {
               borderRadius: 8,
               backgroundColor: 'rgb(17, 27, 39)',
               display: 'flex',
-              margin: 'auto'}}>
+              margin: 'auto'
+              }}>
                 {' '}
                  <input 
                  ref={inputRef}
@@ -135,7 +139,9 @@ const Chat = () => {
                   color: 'white',
                   fontSize: '20px',
                   }}/>   
-                  <IconButton onClick={ handleSubmit } sx={{ ml:'auto', color:'white' }}><IoMdSend/></IconButton>
+                  <IconButton 
+                  onClick={ handleSubmit } 
+                  sx={{ ml:'auto', color:'white' }}><IoMdSend/></IconButton>
                   </div>
                   
                 </Box>
