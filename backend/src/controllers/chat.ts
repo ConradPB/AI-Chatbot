@@ -16,7 +16,7 @@ export const generateChatCompletion = async (
         .json({ message: 'User not registered or token malfuncation' })
 
  // grab chats of user
-   
+
    const chats = User.chats.map(({
     role, content
 }) => ({ 
