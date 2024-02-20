@@ -21,7 +21,8 @@ const CustomizedInput = (props: Props) => {
         width: '400px', 
         borderRadius: 10, 
         fontSize: 20, 
-        color: 'white' } }} />
+        color: 'white' 
+      } }} />
   )
 }
 

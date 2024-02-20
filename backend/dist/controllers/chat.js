@@ -1,6 +1,6 @@
 import user from "../models/user.js";
-import { configureAi } from "../config/ai-config.js";
 import { OpenAIApi } from "openai";
+import { configureAi } from "../config/ai-config.js";
 export const generateChatCompletion = async (req, res, next) => {
     const { message } = req.body;
     try {
