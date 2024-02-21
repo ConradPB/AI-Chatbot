@@ -8,7 +8,7 @@ import { sendChatRequest } from '../helpers/api-communicator'
 
 
 type Message = {
-  role: 'user' | 'Ai'
+  role: 'user' | 'AI'
   content: string
 }
 const Chat = () => {
@@ -113,7 +113,7 @@ const Chat = () => {
               <ChatItem
               content={chat.content} 
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              
+
               role={chat.role} 
               key={index}/>
               )) }
