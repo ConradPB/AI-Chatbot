@@ -8,7 +8,7 @@ import { sendChatRequest } from '../helpers/api-communicator'
 
 
 type Message = {
-  role: 'user' | 'AI'
+  role: 'user' | 'Ai'
   content: string
 }
 const Chat = () => {
