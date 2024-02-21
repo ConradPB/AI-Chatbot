@@ -7,5 +7,5 @@ connectToMongoDB()
 .then(() => {
     app.listen(PORT, () => console.log(`Server is up and connected to Database on port: ${PORT}`));
 
-})
+}) 
 .catch(err => console.log(err))

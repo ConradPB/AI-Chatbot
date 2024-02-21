@@ -7,4 +7,5 @@ export const configureAi = () => {
         organization: process.env.OPENAI_ORGANIZATION_ID
     })
     return config
+    
 }
