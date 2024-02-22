@@ -6,11 +6,11 @@ const ChatItem = ({
     content, 
     role,} : {
         content: string;
-        role:'user' | 'AI';
+        role:'user' | 'assistant';
     }) => {
         const auth = useAuth()
   return (
-role === 'AI' ? (
+role === 'assistant' ? (
         <Box sx={{ 
             display: 'flex', 
             p: 2, 

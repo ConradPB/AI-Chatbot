@@ -25,4 +25,4 @@ export const sendChatRequest = async (message: string) => {
     }
     const data = await res.data
     return data
-}
+} 
