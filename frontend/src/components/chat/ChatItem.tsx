@@ -1,13 +1,40 @@
 import { Avatar, Box, Typography } from '@mui/material'
 import React from 'react'
 import { useAuth } from '../../context/Authcontext'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-const ChatItem = ({
+function extractCodeFromString(message: string){
+if (message.includes("```")) {
+    const blocks = message.split("```")
+    return blocks
+}
+}
+
+function isCodeBlock(str: string) {
+    if (
+        str.includes('=') ||
+        str.includes(';') ||
+        str.includes('[') ||
+        str.includes(']') ||
+        str.includes('{') ||
+        str.includes('}') ||
+        str.includes('#') ||
+        str.includes('//')
+    ) {
+        return true
+
+    }
+    return false
+}
+
+const ChatItem = ({ 
     content, 
     role,} : {
         content: string;
         role:'user' | 'assistant';
     }) => {
+        const messageBlocks = extractCodeFromString(content)
         const auth = useAuth()
   return (
 role === 'assistant' ? (
@@ -20,7 +47,26 @@ role === 'assistant' ? (
             <Avatar sx={{ ml: '0', bgcolor: 'white' }}>
                 <img src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI=' alt='ai' width={'30px'}/>
             </Avatar>
-            <Box><Typography fontSize={'20px'}>{content}</Typography></Box>
+            <Box>
+                {!messageBlocks && (
+                    <Typography sx={{ fontSize: '20px' }}>{content}</Typography>
+                )}
+                {
+                messageBlocks && 
+                messageBlocks.length && 
+                messageBlocks.map((block) => (isCodeBlock(block) ? (
+                <SyntaxHighlighter 
+                style={coldarkDark} 
+                language='javascript' >
+                    {block}
+                </SyntaxHighlighter>
+                ):( 
+                    <Typography sx={{ fontSize: '20px' }}>{block}</Typography>
+                )  
+                )
+                )}    
+
+            </Box>
         </Box>
     ) : (
         <Box sx={{ 
@@ -33,7 +79,26 @@ role === 'assistant' ? (
                 { auth?.user?.name[0] }
                 { auth?.user?.name.split(' ')[1][0] } 
             </Avatar>
-        <Box><Typography fontSize={'20px'}>{content}</Typography></Box>
+            <Box>
+                {!messageBlocks && (
+                    <Typography sx={{ fontSize: '20px' }}>{content}</Typography>
+                )}
+                {
+                messageBlocks && 
+                messageBlocks.length && 
+                messageBlocks.map((block) => (isCodeBlock(block) ? (
+                <SyntaxHighlighter 
+                style={coldarkDark} 
+                language='javascript' >
+                    {block}
+                </SyntaxHighlighter>
+                ):( 
+                    <Typography sx={{ fontSize: '20px' }}>{block}</Typography>
+                )  
+                )
+                )}    
+
+            </Box>
         </Box>
     )
   )
