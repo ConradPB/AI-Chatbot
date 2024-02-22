@@ -73,7 +73,8 @@ role === 'assistant' ? (
             display: 'flex', 
             p: 2, 
             bgcolor: '#004d56',  
-            gap: 2 
+            gap: 2,
+            my: 2 
             }}>
             <Avatar sx={{ ml: '0', bgcolor: 'black', color: 'white' }}>
                 { auth?.user?.name[0] }
