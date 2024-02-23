@@ -10,4 +10,10 @@ chatRoute.post(
     verifyToken, 
     generateChatCompletion
 )
+
+chatRoute.post(
+    '/all-chats', 
+    verifyToken, 
+    generateChatCompletion
+)
 export default chatRoute;
