@@ -3,9 +3,10 @@ import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 
 type Message = {
@@ -13,6 +14,7 @@ type Message = {
   content: string
 }
 const Chat = () => {
+  const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement | null>(null)
   const auth = useAuth()
   const [chatMessages, setChatMessages] = useState<Message[]>([])
@@ -55,7 +57,13 @@ useLayoutEffect(() => {
       toast.error('loading Failed', { id: 'loadchats' })
     })
   }
-},[])
+},[auth])
+useEffect(() => {
+  if(!auth?.user) {
+    return navigate('/login')
+  }
+
+}, [auth])
   return (
     <Box sx={{ 
       display: 'flex', 
