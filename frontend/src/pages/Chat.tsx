@@ -3,8 +3,9 @@ import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
-import { useRef, useState } from 'react'
-import { sendChatRequest } from '../helpers/api-communicator'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { getUserChats, sendChatRequest } from '../helpers/api-communicator'
+import toast from 'react-hot-toast'
 
 
 type Message = {
@@ -26,6 +27,20 @@ const Chat = () => {
     setChatMessages([...chatData.chats])
 
 }
+
+useLayoutEffect(() => {
+  if (auth?.isLoggedIn && auth.user) {
+    toast.loading('Loading chats', { id: 'loadchats' })
+    getUserChats().then((data) => {
+      setChatMessages([...data.chats])
+      toast.success('Successfully loaded chats', { id: 'loadchats' })
+
+    }).catch(err => {
+      console.log(err)
+      toast.error('loading Failed', { id: 'loadchats' })
+    })
+  }
+},[])
   return (
     <Box sx={{ 
       display: 'flex', 
