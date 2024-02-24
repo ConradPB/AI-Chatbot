@@ -134,3 +134,35 @@ export const verifyUser = async (
         return res.status(200).json({ message:'ERROR', cause: error.message })
     }
 }
+
+export const userLogout = async (
+    req: Request, 
+    res: Response,
+    next: NextFunction
+    ) => {
+    try {
+        //Token check
+        const User = await user.findById(res.locals.jwtData.id)
+        if(!User) {
+            return res.status(401).send('User not registered or token malfuncation')
+        }
+        if(User._id.toString() !== res.locals.jwtData.id) {
+            res.status(401).send('Permissions didnt match')
+
+        }
+
+        res.clearCookie(COOKIE_NAME, {
+            path: '/', 
+            httpOnly: true,
+            domain: 'localhost', 
+            signed: true,
+        })
+        
+        return res
+        .status(200)
+        .json({ message:'OK', name: User.name, email: User.email });
+    } catch (error) {
+        console.log(error);
+        return res.status(200).json({ message:'ERROR', cause: error.message })
+    }
+}
