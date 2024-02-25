@@ -23,7 +23,7 @@ const Home = () => {
             gap: 5, 
             my: 10 }}>
               <img 
-              src='robot.png' 
+              src='Bot.jpeg' 
               alt='robot' 
               style={{ width:'200px', margin: 'auto' }} 
               />
@@ -35,8 +35,8 @@ const Home = () => {
             </Box>
             <Box sx={{ display:'flex', width:'100%', mx:'auto' }}>
               <img 
-              src='' 
-              alt='' 
+              src='chat.png' 
+              alt='chatbot' 
               style={{ 
                 display:'flex', 
                 margin: 'auto', 
