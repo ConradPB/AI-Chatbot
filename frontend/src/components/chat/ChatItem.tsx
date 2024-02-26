@@ -37,12 +37,13 @@ const ChatItem = ({
         const messageBlocks = extractCodeFromString(content)
         const auth = useAuth()
   return (
-role === 'assistant' ? (
+role == 'assistant' ? (
         <Box sx={{ 
             display: 'flex', 
             p: 2, 
             bgcolor: '#004d5612', 
-            my: 2, 
+            borderRadius: 2, 
+            my: 1, 
             gap: 2 }}> 
             <Avatar sx={{ ml: '0', bgcolor: 'white' }}>
                 <img src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI=' alt='ai' width={'30px'}/>
@@ -74,7 +75,7 @@ role === 'assistant' ? (
             p: 2, 
             bgcolor: '#004d56',  
             gap: 2,
-            my: 2 
+            borderRadius: 2 
             }}>
             <Avatar sx={{ ml: '0', bgcolor: 'black', color: 'white' }}>
                 { auth?.user?.name[0] }
