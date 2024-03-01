@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material'
-import CustomizedInput from '../components/shared/customizedInput'
+import CustomizedInput from '../components/shared/CustomizedInput'
 import { IoIosLogIn } from 'react-icons/io';
 import { useAuth } from '../context/Authcontext';
 import { toast } from 'react-hot-toast';
