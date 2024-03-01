@@ -19,7 +19,7 @@ const FeedbackForm = () => {
         }
 
         try {
-            await axios.post('api/v1/feedback', {
+            await axios.post('/feedback', {
                 name: auth.user.name,
                 email: auth.user.email,
                 content,
@@ -36,29 +36,73 @@ const FeedbackForm = () => {
     }
 
     return (
-        <Box component='form' onSubmit={handleSubmit}>
-            <Typography variant='h6'>Submit your feedback</Typography>
-            <TextField 
-            label='Feedback' 
-            multiline 
-            rows={4} 
-            value={content} 
-            onChange={(e) => setContent(e.target.value)} 
-            fullWidth 
-            required
-            />
-            <TextField 
-            label='Rating' 
-            type='number' 
-            inputProps={{ inputProps: { min: 1, max: 5 } }} 
-            value={rating} 
-            onChange={(e) => setRating(parseInt(e.target.value))}
-            fullWidth
-            required
-            />
-            <Button type='submit' variant='contained' sx={{ mt: 2 }} >
-                Submit
-            </Button>
+        <Box 
+          component="form" 
+          onSubmit={handleSubmit} 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+          }}
+        >
+            <Typography variant="h6" sx={{ mb: 2 }}>Submit Feedback</Typography>
+            <Box sx={{ 
+              width: { xs: '100%', sm: '80%', md: '60%', lg: '40%' }, // Responsive width
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: 2, // Creates consistent space between elements
+            }}>
+              <TextField
+                  label="Feedback Content"
+                  multiline
+                  rows={4}
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  fullWidth
+                  required
+                  InputProps={{
+                      style: {
+                          backgroundColor: 'white',
+                          borderRadius: '4px',
+                      },
+                  }}
+                  InputLabelProps={{
+                      style: { color: '#000' },
+                  }}
+                  variant="outlined" // Added for a more defined look
+              />
+              <TextField
+                  label="Rating (1-5)"
+                  type="number"
+                  value={rating}
+                  onChange={(e) => setRating(parseInt(e.target.value))}
+                  fullWidth
+                  required
+                  InputProps={{
+                      style: {
+                          backgroundColor: 'white',
+                          borderRadius: '4px',
+                      },
+                  }}
+                  InputLabelProps={{
+                      style: { color: '#000' },
+                  }}
+                  variant="outlined"
+                  inputProps={{ min: 1, max: 5 }}
+              />
+              <Button 
+                type="submit" 
+                variant="contained" 
+                sx={{ 
+                  alignSelf: 'center', // Center the button
+                  mt: 2, 
+                  px: 5 // More horizontal padding for a wider button
+                }}
+              >
+                  Submit
+              </Button>
+            </Box>
         </Box>
     )
 
