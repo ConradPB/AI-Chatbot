@@ -7,6 +7,6 @@ const appRouter = Router()
 
 appRouter.use('/user', userRoute) //domain/api/v1/user
 appRouter.use('/chat', chatRoute) //domain/api/v1/chat
-appRouter.use('/feedback', feedbackRoute) //domain/api/v1/feedback
-
+appRouter.use('/feedback', feedbackRoute)
 export default appRouter
+

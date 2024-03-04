@@ -1,18 +1,21 @@
 import feedback from "../models/feedback.js";
-export const submitFeedback = async (req, res, next) => {
+export const createFeedback = async (req, res) => {
     try {
-        const { name, email, content, rating } = req.body;
-        const allFeedback = new feedback({
-            name,
-            email,
-            content,
-            rating
-        });
-        await allFeedback.save();
-        res.status(201).json({ message: 'Feedback submitted successfully', feedback: allFeedback });
+        const allfeedback = new feedback(req.body);
+        await allfeedback.save();
+        res.status(201).json({ message: 'Feedback created successfully' });
     }
     catch (error) {
-        res.status(500).json({ message: 'Error submitting feedback', error: error.message });
+        res.status(500).json({ error: 'An error occurred while creating feedback' });
+    }
+};
+export const getFeedback = async (req, res) => {
+    try {
+        const allfeedback = await feedback.find();
+        res.status(200).json(feedback);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while getting feedback' });
     }
 };
 //# sourceMappingURL=feedback.js.map

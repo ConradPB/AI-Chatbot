@@ -1,22 +1,9 @@
-import mongoose from "mongoose";
-const feedbackSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    content: {
-        type: String,
-        required: true,
-    },
-    rating: {
-        type: Number,
-        required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+import mongoose, { Schema } from 'mongoose';
+const FeedbackSchema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    messageId: { type: Schema.Types.ObjectId, ref: 'Message', required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: false },
 });
-export default mongoose.model('Feedback', feedbackSchema);
+export default mongoose.model('Feedback', FeedbackSchema);
 //# sourceMappingURL=feedback.js.map

@@ -1,26 +1,33 @@
-import { NextFunction, Request, Response } from "express";
-import feedback from "../models/feedback.js";
+import { Request, Response } from 'express';
+import feedback from '../models/feedback.js';
 
 
-export const submitFeedback = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-    ) => {
-        try {
-            const { name, email, content, rating } = req.body;
-            const allFeedback = new feedback({ 
-                name, 
-                email, 
-                content, 
-                rating 
-            });
+export const createFeedback = async (req: Request, res: Response) => {
+    try {
+        const { content } = req.body;
+        const userId = res.locals.jwtData.id; // Assuming you're storing user id in JWT
+        const Feedback = await feedback.create({ userId, content });
+        res.status(201).json(feedback);
+    } catch (error) {
+        res.status(400).json({ message: 'Could not create feedback', error: error.message });
+    }
+};
 
-            await allFeedback.save()
-            res.status(201).json({ message: 'Feedback submitted successfully', feedback: allFeedback });
-        } catch (error) {
-            res.status(500).json({ message: 'Error submitting feedback', error: error.message });
+export const getFeedback = async (req: Request, res: Response) => {
+    try {
+        const Feedback = await feedback.find().populate('userId', 'name email');
+        res.status(200).json(feedback);
+    } catch (error) {
+        res.status(400).json({ message: 'Could not fetch feedback', error: error.message });
+    }
+};
 
-        }
-
-     }
+export const deleteFeedback = async (req: Request, res: Response) => {
+    try {
+        const { feedbackId } = req.params;
+        await feedback.findByIdAndDelete(feedbackId);
+        res.status(200).json({ message: 'Feedback deleted' });
+    } catch (error) {
+        res.status(400).json({ message: 'Could not delete feedback', error: error.message });
+    }
+};
