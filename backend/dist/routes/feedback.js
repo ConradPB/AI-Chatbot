@@ -1,7 +1,9 @@
-import express from 'express';
-import { createFeedback, getFeedback } from '../controllers/feedback.js';
-const router = express.Router();
-router.post('/feedback', createFeedback);
-router.get('/feedback', getFeedback);
-export default router;
+import { Router } from 'express';
+import { verifyToken } from '../utils/token.js';
+import { createFeedback, deleteFeedback, getFeedback } from '../controllers/feedback.js';
+const feedbackRoute = Router();
+feedbackRoute.post('/', verifyToken, createFeedback);
+feedbackRoute.get('/', verifyToken, getFeedback);
+feedbackRoute.delete('/:feedbackId', verifyToken, deleteFeedback);
+export default feedbackRoute;
 //# sourceMappingURL=feedback.js.map
