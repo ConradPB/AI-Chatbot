@@ -1,14 +1,13 @@
+
 import React from 'react';
-import FeedbackForm from '../components/FeedbackForm';
+import FeedbackPage from '../components/FeedbackForm';
 
-
-const Feedback = () => {
+function App() {
   return (
-    <div className="chat-page-style"> {}
-      <h2>Feedback</h2>
-      <FeedbackForm />
+    <div>
+      <FeedbackPage />
     </div>
   );
-};
+}
 
-export default Feedback;
+export default App;
