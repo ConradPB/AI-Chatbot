@@ -2,7 +2,10 @@
 import { Configuration, OpenAIApi } from 'openai';
 
 export const generateImage = async (prompt: string): Promise<string[]> => {
-  const openai = new OpenAIApi(new Configuration({ apiKey: process.env.OPENAI_API_KEY }));
+  const openai = new OpenAIApi(new Configuration({ 
+    apiKey: process.env.OPEN_AI_SECRET,
+    organization: process.env.OPENAI_ORGANIZATION_ID
+}));
   
   try {
     const response = await openai.createImage({
