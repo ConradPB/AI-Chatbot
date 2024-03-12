@@ -1,0 +1,1 @@
+{"version":3,"file":"imageRoutes.js","sourceRoot":"","sources":["../../src/routes/imageRoutes.ts"],"names":[],"mappings":"AACA,OAAO,OAAO,MAAM,SAAS,CAAC;AAC9B,OAAO,EAAE,uBAAuB,EAAE,MAAM,oCAAoC,CAAC;AAE7E,MAAM,WAAW,GAAG,OAAO,CAAC,MAAM,EAAE,CAAC;AAErC,WAAW,CAAC,IAAI,CAAC,WAAW,EAAE,uBAAuB,CAAC,CAAC;AAEvD,eAAe,WAAW,CAAC"}

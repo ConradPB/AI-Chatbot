@@ -1,5 +1,4 @@
 import user from "../models/user.js";
-import { OpenAIApi } from "openai";
 import { configureAi } from "../config/ai-config.js";
 export const generateChatCompletion = async (req, res, next) => {
     const { message } = req.body;
@@ -24,9 +23,8 @@ export const generateChatCompletion = async (req, res, next) => {
         });
         // send all chats with new one to API
         const config = configureAi();
-        const ai = new OpenAIApi(config);
         // get latest response
-        const chatResponse = await ai.createChatCompletion({
+        const chatResponse = await config.createChatCompletion({
             model: 'gpt-3.5-turbo',
             messages: chats,
         });
@@ -78,6 +76,24 @@ export const deleteChats = async (req, res, next) => {
     catch (error) {
         console.log(error);
         return res.status(200).json({ message: 'ERROR', cause: error.message });
+    }
+};
+export const generateImage = async (req, res, next) => {
+    const { prompt } = req.body;
+    try {
+        const openAi = configureAi();
+        const response = await openAi.createImage({
+            prompt: prompt,
+            n: 1, // Number of images to generate
+            size: "1024x1024" // Image size
+        });
+        // Extract and send the image URL back
+        const imageUrl = response.data.data[0].url;
+        res.status(200).json({ imageUrl });
+    }
+    catch (error) {
+        console.error("Failed to generate image:", error);
+        res.status(500).json({ message: "Failed to generate image" });
     }
 };
 //# sourceMappingURL=chat.js.map
