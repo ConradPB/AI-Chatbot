@@ -39,6 +39,15 @@ export const sendChatRequest = async (message: string) => {
     return data
 } 
 
+export const sendImageRequest = async (message: string) => {
+    try {
+        const res = await axios.post('/chat/image', { message })
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const getUserChats = async () => {
     const res = await axios.get('/chat/all-chats')
     if ( res.status !== 200 ) {
