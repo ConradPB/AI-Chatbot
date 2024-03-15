@@ -4,7 +4,7 @@ import { red } from '@mui/material/colors'
 import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { deleteUserChats, getUserChats, sendChatRequest, sendImageRequest } from '../helpers/api-communicator'
+import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,17 +25,9 @@ const Chat = () => {
     }
     const newMessage: Message = { role: 'user', content }
     setChatMessages((prev) => [...prev, newMessage])
-    if(content.startsWith('draw')) {
-      const imageData = await sendImageRequest(content)
-      const imageMessage: Message = {
-        role: 'assistant',
-        content: imageData.url
-      }
-      setChatMessages((prev) => [...prev, imageMessage])
-    } else {
     const chatData = await sendChatRequest(content)
     setChatMessages([...chatData.chats])
-  }
+  
 
 }
 
