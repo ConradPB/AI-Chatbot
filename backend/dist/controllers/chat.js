@@ -78,22 +78,4 @@ export const deleteChats = async (req, res, next) => {
         return res.status(200).json({ message: 'ERROR', cause: error.message });
     }
 };
-export const generateImage = async (req, res, next) => {
-    const { prompt } = req.body;
-    try {
-        const openAi = configureAi();
-        const response = await openAi.createImage({
-            prompt: prompt,
-            n: 1, // Number of images to generate
-            size: "1024x1024" // Image size
-        });
-        // Extract and send the image URL back
-        const imageUrl = response.data.data[0].url;
-        res.status(200).json({ imageUrl });
-    }
-    catch (error) {
-        console.error("Failed to generate image:", error);
-        res.status(500).json({ message: "Failed to generate image" });
-    }
-};
 //# sourceMappingURL=chat.js.map
