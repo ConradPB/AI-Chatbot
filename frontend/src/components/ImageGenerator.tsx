@@ -33,8 +33,9 @@ const ImageGenerator = () => {
         throw new Error(data.message || 'Failed to generate image');
       }
     } catch (error) {
-      console.error(error);
-      toast.error(error.message);
+      const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+      console.error(errorMessage);
+      toast.error(errorMessage);
     }
   };
 

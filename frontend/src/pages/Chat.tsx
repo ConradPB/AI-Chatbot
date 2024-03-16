@@ -7,6 +7,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import ImageGenerator from '../components/ImageGenerator'
 
 
 type Message = {
@@ -120,8 +121,11 @@ useEffect(() => {
                     }
                     }}
                     >Clear Conversation</Button>
+                  
             </Box>
+           
         </Box>
+        <ImageGenerator />
         <Box sx={{ 
           display: 'flex', 
           flex: { md: 0.8, xs: 1, sm: 1 }, 
