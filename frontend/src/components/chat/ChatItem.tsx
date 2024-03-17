@@ -8,6 +8,8 @@ if (message.includes("```")) {
     const blocks = message.split("```")
     return blocks
 }
+return [message]
+
 }
 
 function isCodeBlock(str: string) {
@@ -27,6 +29,10 @@ function isCodeBlock(str: string) {
     return false
 }
 
+function isImageUrl(url: string) {
+    return /\.(jpeg|jpg|gif|png|svg)$/i.test(url.toLowerCase());
+}
+
 const ChatItem = ({ 
     content, 
     role,} : {
@@ -35,6 +41,7 @@ const ChatItem = ({
     }) => {
         const messageBlocks = extractCodeFromString(content)
         const auth = useAuth()
+
   return (
 role == 'assistant' ? (
         <Box sx={{ 
@@ -54,7 +61,15 @@ role == 'assistant' ? (
                 {
                 messageBlocks && 
                 messageBlocks.length && 
-                messageBlocks.map((block) => (isCodeBlock(block) ? (
+                messageBlocks.map((block, index) => (
+                    isImageUrl(block) ? (
+                        <img 
+                        src={block} 
+                        alt="Generated" 
+                        style={{ maxWidth: '100%', maxHeight: '400px' }} 
+                        key={index}/>
+
+                    ) : isCodeBlock(block) ? (
                 <SyntaxHighlighter 
                 style={coldarkDark} 
                 language='javascript' >
@@ -87,7 +102,11 @@ role == 'assistant' ? (
                 {
                 messageBlocks && 
                 messageBlocks.length && 
-                messageBlocks.map((block) => (isCodeBlock(block) ? (
+                messageBlocks.map((block, index) => (
+                    isImageUrl(block) ? (
+                    <img src={block} alt="Generated" style={{ maxWidth: '100%', maxHeight: '400px' }} key={index}/>
+                ) : isCodeBlock(block) ? (
+
                 <SyntaxHighlighter 
                 style={coldarkDark} 
                 language='javascript' >
