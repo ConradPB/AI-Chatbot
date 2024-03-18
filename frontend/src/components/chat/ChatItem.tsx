@@ -3,13 +3,12 @@ import { useAuth } from '../../context/Authcontext'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-function extractCodeFromString(message: string){
-if (message.includes("```")) {
-    const blocks = message.split("```")
-    return blocks
-}
-return [message]
-
+function extractCodeFromString(message: string) {
+    if (message.includes("```")) {
+        const blocks = message.split("```");
+        return blocks;
+    }
+    return [message]; // Ensure it always returns an array
 }
 
 function isCodeBlock(str: string) {
