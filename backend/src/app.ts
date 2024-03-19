@@ -8,12 +8,14 @@ config();
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+const originUrl = process.env.NODE_ENV === 'production' ? 'https://zilla-chat.onrender.com' : 'http://localhost:5173';
+
+app.use(cors({ origin: originUrl, credentials: true }));
 app.use(express.json()); 
 app.use(cookieParser(process.env.COOKIE_SECRET)) 
 
 // Only for dev mode. Remove in production
-app.use(morgan('dev'));
+if(process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use('/api/v1', appRouter)
 
