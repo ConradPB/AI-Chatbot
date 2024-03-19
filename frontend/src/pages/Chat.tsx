@@ -1,12 +1,12 @@
 import { Avatar, Box, Button, IconButton, Typography } from '@mui/material'
 import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
-import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import ChatItemSimplified from '../components/chat/ChatItem'
 
 
 type Message = {
@@ -188,7 +188,7 @@ useEffect(() => {
             scrollBehavior:'smooth'
              }}>
               { chatMessages.map((chat, index) => (
-              <ChatItem
+              <ChatItemSimplified
               content={chat.content} 
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 
