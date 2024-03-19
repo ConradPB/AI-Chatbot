@@ -10,7 +10,7 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import axios from 'axios'
 let baseURL = 'http://localhost:7000/api/v1'
 if (process.env.NODE_ENV === 'production') {
-  baseURL = 'https://zilla-chat.onrender.com/api/v1'
+  baseURL = 'https://zilla-api.onrender.com/api/v1'
 }
 axios.defaults.baseURL = baseURL
 
