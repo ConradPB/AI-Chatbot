@@ -6,6 +6,7 @@ import Chat from "./pages/Chat"
 import Signup from "./pages/Signup"
 import NotFound from "./pages/NotFound"
 import { useAuth } from "./context/Authcontext"
+import ImageGeneratorPage from "./pages/ImageGeneratorPage"
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
        )}
         <Route path='/signup' element={ <Signup /> } />
         <Route path='*' element={ <NotFound /> } />
+        <Route path="/" element={<Chat />} />
+        <Route path="/generate-image" element={<ImageGeneratorPage />} />
       </Routes>
      
 

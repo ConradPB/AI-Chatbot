@@ -1,12 +1,15 @@
 import { Avatar, Box, Button, IconButton, Typography } from '@mui/material'
 import { useAuth } from '../context/Authcontext'
 import { red } from '@mui/material/colors'
+import ChatItem from '../components/chat/ChatItem'
 import { IoMdSend } from 'react-icons/io'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import ChatItemSimplified from '../components/chat/ChatItem'
+import { Link as RouterLink } from 'react-router-dom';
+import ImageIcon from '@mui/icons-material/Image';
+import Link from '@mui/material/Link'; 
 
 
 type Message = {
@@ -19,53 +22,16 @@ const Chat = () => {
   const auth = useAuth()
   const [chatMessages, setChatMessages] = useState<Message[]>([])
   const handleSubmit = async () => {
-    const content = inputRef.current?.value.trim() as string
-    if(!content) {
-      return
-    }
-
-    if (content.startsWith('/image')) {
-      const description = content.substring(7)
-      generateImage(description)
-    } else {
-      const newMessage: Message = { role: 'user', content }
-      setChatMessages((prev) => [...prev, newMessage])
-      const chatData = await sendChatRequest(content)
-      setChatMessages([...chatData.chats])
-    }
-
-
+    const content = inputRef.current?.value as string
     if (inputRef && inputRef.current) {
       inputRef.current.value = ''
     }
+    const newMessage: Message = { role: 'user', content }
+    setChatMessages((prev) => [...prev, newMessage])
+    const chatData = await sendChatRequest(content)
+    setChatMessages([...chatData.chats])
 
 }
-
-const generateImage = async (description: string) => {
-  try {
-    const response = await fetch('http://localhost:7000/api/v1/image/generate', {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ description }),
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-      // Display the generated image in chat
-      const imageUrl = data.imageUrl; // Adjust based on your actual response structure
-      const imageMessage: Message = { role: 'user', content: imageUrl };
-      setChatMessages(prevMessages => [...prevMessages, imageMessage]);
-    } else {
-      throw new Error(data.message || 'Failed to generate image');
-    }
-  } catch (error) {
-    const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
-    console.error(errorMessage);
-    toast.error(errorMessage);
-  }
-};
-
 
 const handleDeleteChats = async () => {
   try {
@@ -156,9 +122,7 @@ useEffect(() => {
                     }
                     }}
                     >Clear Conversation</Button>
-                  
             </Box>
-           
         </Box>
         <Box sx={{ 
           display: 'flex', 
@@ -188,7 +152,7 @@ useEffect(() => {
             scrollBehavior:'smooth'
              }}>
               { chatMessages.map((chat, index) => (
-              <ChatItemSimplified
+              <ChatItem
               content={chat.content} 
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 
@@ -196,6 +160,11 @@ useEffect(() => {
               key={index}/>
               )) }
              </Box>
+             <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+              <Link component={RouterLink} to="/generate-image" style={{ color: 'white', cursor: 'pointer' }}>
+                <ImageIcon />
+                </Link>
+                </Box>
              <div style={{
               width: '100%',
               borderRadius: 8,
