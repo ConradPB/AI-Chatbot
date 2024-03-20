@@ -159,7 +159,6 @@ useEffect(() => {
              </Box>
              <div style={{
               width: '100%',
-              padding: '10px',
               borderRadius: 8,
               backgroundColor: 'rgb(17, 27, 39)',
               display: 'flex',
@@ -172,7 +171,7 @@ useEffect(() => {
                  style={{
                   width: '100%',
                   backgroundColor: 'transparent',
-                  padding: '10px',
+                  padding: '30px',
                   border: 'none',
                   outline: 'none',
                   color: 'white',
@@ -180,7 +179,7 @@ useEffect(() => {
                   }}/>   
                   <IconButton 
                   onClick={ handleSubmit } 
-                  sx={{ ml:'auto', color:'white' }}><IoMdSend/></IconButton>
+                  sx={{ mx: 1, color:'white' }}><IoMdSend/></IconButton>
                   </div>
                   
                 </Box>

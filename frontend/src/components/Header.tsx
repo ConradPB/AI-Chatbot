@@ -20,6 +20,12 @@ const Header = () => {
             text='Go to chat' 
             textColor='black'
             />
+             <NavigationLink
+            bg='#00fffc'
+            to='/feedback'
+            text='Give feedback'
+            textColor='black'
+            />
             <NavigationLink 
             bg='#51538f' 
             to='/' 
