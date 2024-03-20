@@ -6,6 +6,7 @@ import Chat from "./pages/Chat"
 import Signup from "./pages/Signup"
 import NotFound from "./pages/NotFound"
 import { useAuth } from "./context/Authcontext"
+import Feedback from "./pages/Feedback"
 
 function App() {
 
@@ -21,7 +22,9 @@ function App() {
        <Route path='/chat' element={ <Chat /> } />
        )}
         <Route path='/signup' element={ <Signup /> } />
+        <Route path='/feedback' element={ <Feedback /> } />
         <Route path='*' element={ <NotFound /> } />
+        
       </Routes>
      
 
