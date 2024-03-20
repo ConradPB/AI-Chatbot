@@ -12,7 +12,7 @@ const Logo = () => {
      }}>
         <Link to={'/'}>
             <img 
-            src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI=' 
+            src='logo.jpeg' 
             alt='ai' 
             width={'30px'} 
             height={'30px'} 

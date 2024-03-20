@@ -45,7 +45,7 @@ role == 'assistant' ? (
             my: 1, 
             gap: 2 }}> 
             <Avatar sx={{ ml: '0', bgcolor: 'white' }}>
-                <img src='https://media.istockphoto.com/id/1465023127/vector/a-i-conversation-method-illustrations.jpg?s=1024x1024&w=is&k=20&c=SiZRLFq-Fi-Wt0dv56wlc6CiqVboqC_Qooj981rBWbI=' alt='ai' width={'30px'}/>
+                <img src='logo.jpeg' alt='ai' width={'30px'}/>
             </Avatar>
             <Box>
                 {!messageBlocks && (
