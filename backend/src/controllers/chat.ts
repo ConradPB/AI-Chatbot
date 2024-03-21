@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import user from "../models/user.js";
-import { ChatCompletionRequestMessage, OpenAIApi } from "openai";
+import { ChatCompletionRequestMessage } from "openai";
 import { configureAi } from "../config/ai-config.js";
 
 export const generateChatCompletion = async (
@@ -33,11 +33,10 @@ export const generateChatCompletion = async (
    // send all chats with new one to API
 
    const config = configureAi()
-   const ai = new OpenAIApi(config)
 
     // get latest response
 
-    const chatResponse = await ai.createChatCompletion({
+    const chatResponse = await config.createChatCompletion({
         model: 'gpt-3.5-turbo', 
         messages: chats, 
     })
@@ -108,3 +107,5 @@ export const deleteChats = async (
                 return res.status(200).json({ message:'ERROR', cause: error.message })
             }
         }
+
+

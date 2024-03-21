@@ -1,5 +1,4 @@
 import user from "../models/user.js";
-import { OpenAIApi } from "openai";
 import { configureAi } from "../config/ai-config.js";
 export const generateChatCompletion = async (req, res, next) => {
     const { message } = req.body;
@@ -24,9 +23,8 @@ export const generateChatCompletion = async (req, res, next) => {
         });
         // send all chats with new one to API
         const config = configureAi();
-        const ai = new OpenAIApi(config);
         // get latest response
-        const chatResponse = await ai.createChatCompletion({
+        const chatResponse = await config.createChatCompletion({
             model: 'gpt-3.5-turbo',
             messages: chats,
         });

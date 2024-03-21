@@ -7,6 +7,9 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { deleteUserChats, getUserChats, sendChatRequest } from '../helpers/api-communicator'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom';
+import ImageIcon from '@mui/icons-material/Image';
+import Link from '@mui/material/Link'; 
 
 
 type Message = {
@@ -157,6 +160,11 @@ useEffect(() => {
               key={index}/>
               )) }
              </Box>
+             <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+              <Link component={RouterLink} to="/generate-image" style={{ color: 'white', cursor: 'pointer' }}>
+                <ImageIcon />
+                </Link>
+                </Box>
              <div style={{
               width: '100%',
               borderRadius: 8,
