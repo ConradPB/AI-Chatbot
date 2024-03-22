@@ -19,7 +19,7 @@ export const generateChatCompletion = async (req, res, next) => {
         });
         User.chats.push({
             content: message,
-            role: 'user'
+            role: 'user',
         });
         // send all chats with new one to API
         const config = configureAi();
@@ -33,7 +33,10 @@ export const generateChatCompletion = async (req, res, next) => {
         return res.status(200).json({ chats: User.chats });
     }
     catch (error) {
-        console.log(error);
+        console.error("Error when calling OpenAI API or processing chat:", error);
+        // If the error is an instance of Error, log and return its message. Otherwise, log a general error.
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+        console.error(errorMessage);
         return res.status(500).json({ message: 'Something went wrong' });
     }
 };

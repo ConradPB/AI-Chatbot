@@ -16,11 +16,7 @@ const chatSchema = new mongoose.Schema({
         required: true,
     },
 
-    userId: {
-        type: String,
-        required: true,
 
-    }
 
   
 })
